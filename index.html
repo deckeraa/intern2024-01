@@ -1,12 +1,18 @@
 <html>
   <body>
-    <button onclick="todo()">Count by 5</button>
+    <button id="a" onclick="todo()">Count by 5</button>
     <button onclick="todo()">Count by TODO</button>
     <div id="counter">0</div>
   </body>
   <script>
     function todo() {
       alert("Please implement a function to increment the counter by the correct amount.")
-    }
+    };
+
+    let count = document.getElementById("counter");
+    
+    document.getElementById('a').onclick = function()  {
+    count.innerHTML = parseInt(count.innerHTML) + 5;
+    };
   </script>
 </html>
