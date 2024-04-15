@@ -1,7 +1,7 @@
 <html>
   <body>
     <button id="incrementByFive">Count by 5</button>
-    <button onclick="todo()">Count by TODO</button>
+    <button onclick="countBySeven()">Count by 7</button>
     <div id="counter">0</div>
   </body>
   <script>
@@ -14,5 +14,8 @@
     document.getElementById('incrementByFive').onclick = function()  {
     	count.innerHTML = parseInt(count.innerHTML) + 5;
     };
+	function countBySeven() {
+		count.innerHTML = parseInt(count.innerHTML) + 7;
+	}
   </script>
 </html>
