@@ -1,0 +1,116 @@
+<html>
+  <body>
+    <h1>Macron Masher</h1>
+    <div id="interactableString"></div>
+    <button onclick="checkWork()">Check for correctness</button>
+    <button onclick="nextSentence()">Next sentence</button>
+    <div id="resultsDiv"></div>
+  </body>
+  <script>
+    const sentences = [
+      "Dīc, hospes, Spartae tē nōs hīc iacentēs vīdisse, patriae fidēlēs.",
+      "Volō edere lardum.",
+      "Bene vīvāmus, et bona sunt tempora."]
+
+    function flipMacron(s) {
+      // here, s needs to be a string containing a single letter
+      const m = {"ā": "a", "a": "ā",
+		 "ē": "e", "e": "ē",
+		 "ī": "i", "i": "ī",
+		 "ō": "o", "o": "ō",
+		 "ū": "u", "u": "ū"}
+      return m[s] || s
+    }
+
+    function stripMacron(s) {
+      // here, s needs to be a string containing a single letter
+      const m = {"ā": "a",
+		 "ē": "e",
+		 "ī": "i",
+		 "ō": "o",
+		 "ū": "u"}
+      return m[s] || s
+    }
+    
+    function flipMacronInString(s, i) {
+      let s2 = s.substring(0, i) + flipMacron(s[i]) + s.substring(i + 1);
+      return s2
+    }
+
+    function stripMacronsInString(s) {
+      // TODO figure out how to take a string called s and return a new string with all
+      // of the macrons taken out. The stripMacron function will be useful.
+      return s
+    }
+
+    let currentSentenceIndex = 0
+    let currentSentence = stripMacronsInString(sentences[currentSentenceIndex])
+    
+    function letterClicked(s, i) {
+      currentSentence = flipMacronInString(currentSentence, i)
+      redraw()
+    }
+
+    function drawInteractableString(elem, s) {
+      elem.innerHTML = ""
+
+      // TODO: ensure you know what the following for loop is doing.
+      // We build up the element letter-by-letter so that each letter can have its own click target
+      for(let i = 0; i < s.length; i++) {
+	const letter = s[i]
+	const letterElem = document.createElement("span")
+	letterElem.innerText = letter
+	// TODO (level 2): only make vowels have the hover effect
+	letterElem.className = "clickableLetter"
+	letterElem.addEventListener('click', function (e) {
+	  letterClicked(s, i)
+	})
+	elem.appendChild(letterElem)
+      }
+    }
+
+    function drawCorrectedString(elem, userSentence, correctSentence) {
+      // TODO: this function gets passed an element, the user's current sentence, and the correct
+      // version of the sentence. Here you should build up the element letter-by-letter like
+      // drawInteractableString is doing. You can use the correctedLetter CSS class for styling.
+    }
+
+    let resultsElem = document.getElementById("resultsDiv")
+
+    function checkWork() {
+      drawCorrectedString(resultsElem, currentSentence, sentences[currentSentenceIndex])
+      // TODO (level 2): calculate what percentage of the string the user got right and display that somewhere.
+    }
+
+    let interactableStringElem = document.getElementById("interactableString")
+    interactableStringElem.innerHTML = currentSentence
+
+    function redraw() {
+      drawInteractableString(interactableStringElem, currentSentence)
+    }
+
+    function nextSentence() {
+      // TODO ensure you understand how the math on the following line works.
+      currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length
+      currentSentence = stripMacronsInString(sentences[currentSentenceIndex])
+      resultsElem.innerHTML = ""
+      redraw()
+    }
+
+    redraw()
+
+  </script>
+  <style>
+    #interactableString {
+	padding: 10px;
+	font-size: 32px;
+    }
+    .clickableLetter:hover {
+	/* TODO add a hover color here */
+    }
+    .correctedLetter {
+	color: red;
+    }
+  </style>
+</html>
+
