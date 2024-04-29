@@ -38,9 +38,9 @@
     }
 
     function stripMacronsInString(s) {
-      // TODO figure out how to take a string called s and return a new string with all
-      // of the macrons taken out. The stripMacron function will be useful.
-      return s
+      let x=''
+      for(let i = 0; i < s.length; i++) { x+= stripMacron(s[i]);}
+      return x
       
     }
 
