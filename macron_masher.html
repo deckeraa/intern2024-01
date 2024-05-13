@@ -53,7 +53,6 @@
 
     function drawInteractableString(elem, s) {
       elem.innerHTML = ""
-
       // TODO: ensure you know what the following for loop is doing.
       // We build up the element letter-by-letter so that each letter can have its own click target
       for(let i = 0; i < s.length; i++) {
@@ -72,6 +71,14 @@
     }
 
     function drawCorrectedString(elem, userSentence, correctSentence) {
+      for(let i = 0; i < correctSentence.length; i++){
+        const letter = correctSentence[i]
+        const letterElem = document.createElement("span")
+        letterElem.innerText = letter
+        elem.appendChild(letterElem)
+      }
+      
+      
       // TODO: this function gets passed an element, the user's current sentence, and the correct
       // version of the sentence. Here you should build up the element letter-by-letter like
       // drawInteractableString is doing. You can use the correctedLetter CSS class for styling.
