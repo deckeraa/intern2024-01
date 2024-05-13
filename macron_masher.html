@@ -76,6 +76,10 @@
         const letterElem = document.createElement("span")
         letterElem.innerText = letter
         elem.appendChild(letterElem)
+        //console.log(userSentence[i], " and ", correctSentence)
+        if(userSentence[i] !== correctSentence[i]){
+          letterElem.className = "correctedLetter"
+        }
       }
       
       
