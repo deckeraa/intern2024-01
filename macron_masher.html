@@ -60,6 +60,8 @@
 	const letter = s[i]
 	const letterElem = document.createElement("span")
 	letterElem.innerText = letter
+  const vowels = ["a", "e", "i", "o", "u"]
+  if(vowels.includes(letter))
 	//if letter == "a" || "// TODO (level 2): only make vowels have the hover effect
 	letterElem.className = "clickableLetter"
 	letterElem.addEventListener('click', function (e) {
