@@ -5,6 +5,7 @@
     <button onclick="checkWork()">Check for correctness</button>
     <button onclick="nextSentence()">Next sentence</button>
     <div id="resultsDiv"></div>
+    <p id="statsDiv"></p>
   </body>
   <script>
     const sentences = [
@@ -88,7 +89,22 @@
       // drawInteractableString is doing. You can use the correctedLetter CSS class for styling.
     }
 
+  
     let resultsElem = document.getElementById("resultsDiv")
+    
+    function calculatePercentCorrect(userSentence, correctSentence) {
+      let numCorrect = 0
+      for(let i = 0; i < correctSentence.length; i++){ 
+        if(userSentence[i] === correctSentence[i]){
+          numCorrect = numCorrect + 1
+        }
+      }
+      return numCorrect / correctSentence.length * 100
+    }
+
+    function drawStats() {
+    document.getElementById("statsDiv").innerHTML = calculatePercentCorrect(userSentence, correctSentence)
+    }
 
     function checkWork() {
       drawCorrectedString(resultsElem, currentSentence, sentences[currentSentenceIndex])
