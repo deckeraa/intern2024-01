@@ -24,7 +24,6 @@
     }
 
     function stripMacron(s) {
-      // here, s needs to be a string containing a single letter
       const m = {"ā": "a",
 		 "ē": "e",
 		 "ī": "i",
@@ -54,8 +53,6 @@
 
     function drawInteractableString(elem, s) {
       elem.innerHTML = ""
-      // TODO: ensure you know what the following for loop is doing.
-      // We build up the element letter-by-letter so that each letter can have its own click target
       for(let i = 0; i < s.length; i++) {
 	const letter = s[i]
 	const letterElem = document.createElement("span")
@@ -77,19 +74,11 @@
         const letterElem = document.createElement("span")
         letterElem.innerText = letter
         elem.appendChild(letterElem)
-        //console.log(userSentence[i], " and ", correctSentence)
         if(userSentence[i] !== correctSentence[i]){
           letterElem.className = "correctedLetter"
         }
       }
-      
-      
-      // TODO: this function gets passed an element, the user's current sentence, and the correct
-      // version of the sentence. Here you should build up the element letter-by-letter like
-      // drawInteractableString is doing. You can use the correctedLetter CSS class for styling.
     }
-
-  
     let resultsElem = document.getElementById("resultsDiv")
     
     function calculatePercentCorrect(userSentence, correctSentence) {
@@ -109,18 +98,14 @@
       drawCorrectedString(resultsElem, currentSentence, sentences[currentSentenceIndex])
       drawStats(currentSentence, sentences[currentSentenceIndex])
       
-      // TODO (level 2): calculate what percentage of the string the user got right and display that somewhere.
     }
 
     let interactableStringElem = document.getElementById("interactableString")
-    // interactableStringElem.innerHTML = currentSentence
-
     function redraw() {
       drawInteractableString(interactableStringElem, currentSentence)
     }
 
     function nextSentence() {
-      // TODO ensure you understand how the math on the following line works.
       currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length
       currentSentence = stripMacronsInString(sentences[currentSentenceIndex])
       resultsElem.innerHTML = ""
