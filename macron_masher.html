@@ -102,12 +102,14 @@
       return numCorrect / correctSentence.length * 100
     }
 
-    function drawStats() {
-    document.getElementById("statsDiv").innerHTML = calculatePercentCorrect(userSentence, correctSentence)
+    function drawStats(userSentence, correctSentence) {
+       document.getElementById("statsDiv").innerHTML = calculatePercentCorrect(userSentence, correctSentence)
     }
 
     function checkWork() {
       drawCorrectedString(resultsElem, currentSentence, sentences[currentSentenceIndex])
+      drawStats(currentSentence, sentences[currentSentenceIndex])
+      
       // TODO (level 2): calculate what percentage of the string the user got right and display that somewhere.
     }
 
