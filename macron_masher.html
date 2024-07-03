@@ -103,9 +103,8 @@
     }
 
     function drawStats(userSentence, correctSentence) {
-       document.getElementById("statsDiv").innerHTML = calculatePercentCorrect(userSentence, correctSentence)
+       document.getElementById("statsDiv").innerHTML = Math.round(calculatePercentCorrect(userSentence, correctSentence))+"% correct"
     }
-
     function checkWork() {
       drawCorrectedString(resultsElem, currentSentence, sentences[currentSentenceIndex])
       drawStats(currentSentence, sentences[currentSentenceIndex])
