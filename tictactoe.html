@@ -22,27 +22,33 @@
 
 <body>
   <script> 
-  let gamegrid = [[null, null, null], [null, "O", null], [null, null, null]]
-  function twoDtoOneD(row, col) {
-    return col + 3*row;
-  }
-  function oneDtoTwoD(buttonNumber) {
-    const row = Math.floor(buttonNumber/3)
-    const col = buttonNumber % 3
-    return [row, col]
-  }
+    let gamegrid = [[null, null, null], [null, "O", null], [null, null, null]]
+    function twoDtoOneD(row, col) {
+      return col + 3*row;
+    }
+    function oneDtoTwoD(buttonNumber) {
+      const row = Math.floor(buttonNumber/3)
+      const col = buttonNumber % 3
+      return [row, col]
+    }
+    function markMove(letter, buttonNumber) {
+      const [row, col] = oneDtoTwoD(buttonNumber)
+      gamegrid[row][col] = letter
+      document.getElementById("button"+buttonNumber).innerText = letter
+    }
+    function markMoveByRowAndCol(letter, row, col) {
+      buttonNumber = twoDtoOneD(row, col)
+      gamegrid[row][col] = letter
+      document.getElementById("button"+buttonNumber).innerText = letter
+    }
     function handleClick(buttonNumber) {
       const [row, col] = oneDtoTwoD(buttonNumber)
       console.log("clicked button: ", buttonNumber, row, col)
       console.log("the spot clicked on in gamegrid contains: ", gamegrid[row][col])
       console.log("gamegrid is: ", gamegrid)
-      // TODO check gamegrid and only allow blanks to be changed
       if (gamegrid[row][col] === null) {
-        gamegrid[row][col] = "X"
-        document.getElementById("button"+buttonNumber).innerText = "X"
+        markMove("X", buttonNumber)
       }
-
-      // TODO update gamegrid
     }
 
     function handleWin() {
