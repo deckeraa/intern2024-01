@@ -22,7 +22,7 @@
 
 <body>
   <script> 
-  let gamegrid = [[null, null, null], [null, null, null], [null, null, null]]
+  let gamegrid = [[null, null, null], [null, "O", null], [null, null, null]]
   function twoDtoOneD(row, col) {
     return col + 3*row;
   }
@@ -34,8 +34,13 @@
     function handleClick(buttonNumber) {
       const [row, col] = oneDtoTwoD(buttonNumber)
       console.log("clicked button: ", buttonNumber, row, col)
+      console.log("the spot clicked on in gamegrid contains: ", gamegrid[row][col])
+      console.log("gamegrid is: ", gamegrid)
       // TODO check gamegrid and only allow blanks to be changed
-      document.getElementById("button"+buttonNumber).innerText = "X"
+      if (gamegrid[row][col] === null) {
+        gamegrid[row][col] = "X"
+        document.getElementById("button"+buttonNumber).innerText = "X"
+      }
 
       // TODO update gamegrid
     }
@@ -69,7 +74,7 @@
     </tr>
     <tr>
         <td><button id="button3" onclick="handleClick(3)"></button></td>
-        <td><button id="button4" onclick="handleClick(4)"></button></td>
+        <td><button id="button4" onclick="handleClick(4)">O</button></td>
         <td><button id="button5" onclick="handleClick(5)"></button></td>
     </tr>
     <tr>
