@@ -22,8 +22,22 @@
 
 <body>
   <script> 
+  let gamegrid = [[null, null, null], [null, null, null], [null, null, null]]
+  function twoDtoOneD(row, col) {
+    return col + 3*row;
+  }
+  function oneDtoTwoD(buttonNumber) {
+    const row = Math.floor(buttonNumber/3)
+    const col = buttonNumber % 3
+    return [row, col]
+  }
     function handleClick(buttonNumber) {
-        document.getElementById("button"+buttonNumber).innerText = "X"
+      const [row, col] = oneDtoTwoD(buttonNumber)
+      console.log("clicked button: ", buttonNumber, row, col)
+      // TODO check gamegrid and only allow blanks to be changed
+      document.getElementById("button"+buttonNumber).innerText = "X"
+
+      // TODO update gamegrid
     }
 
     function handleWin() {
