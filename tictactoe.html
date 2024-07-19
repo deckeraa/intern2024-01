@@ -49,6 +49,12 @@
       if (gamegrid[row][col] === null) {
         markMove("X", buttonNumber)
         computerMove()
+        if (isWinner("X")) { 
+          handleWin()
+        }
+        if (isWinner("O")) {
+          handleLoss()
+        }
       }
     }
     function getOpenSpaces() {
@@ -102,22 +108,19 @@
 
     }
     function handleWin() {
-    
+      document.getElementById("WinOrLoss").innerText = "You Won"
     }
 
     function handleLoss() {
-
+      document.getElementById("WinOrLoss").innerText = "You Lose"
     }
-
-    function checkWinner() {
-
-    }
-
   </script>
 
   <h1>
     TicTacToe
   </h1>
+  
+  <div id="WinOrLoss"></div>
 
   <table>
     <tr>
