@@ -64,6 +64,43 @@
     function computerMove() {
       markMove("O", randElement(getOpenSpaces()))
     }
+    function isWinner(letter) {
+    if (gamegrid[0][0] === letter &&
+       gamegrid[0][1] === letter &&
+       gamegrid[0][2] === letter) {
+       return true
+       }
+    if (gamegrid[1][0] === letter &&
+       gamegrid[1][1] === letter &&
+       gamegrid[1][2] === letter) {
+       return true}
+    if (gamegrid[2][0] === letter &&
+       gamegrid[2][1] === letter &&
+       gamegrid[2][2] === letter) {
+       return true}
+   if (gamegrid[0][0] === letter &&
+       gamegrid[1][0] === letter &&
+       gamegrid[2][0] === letter) {
+       return true
+       }
+    if (gamegrid[0][1] === letter &&
+       gamegrid[1][1] === letter &&
+       gamegrid[2][1] === letter) {
+       return true}
+    if (gamegrid[0][2] === letter &&
+       gamegrid[1][2] === letter &&
+       gamegrid[2][2] === letter) {
+       return true}
+    if (gamegrid[0][0] === letter &&
+       gamegrid[1][1] === letter &&
+       gamegrid[2][2] === letter) {
+       return true}
+    if (gamegrid[2][0] === letter &&
+       gamegrid[1][1] === letter &&
+       gamegrid[0][2] === letter) {
+       return true}
+
+    }
     function handleWin() {
     
     }
