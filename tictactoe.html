@@ -22,7 +22,7 @@
 
 <body>
   <script> 
-    let gamegrid = [[null, null, null], [null, "O", null], [null, null, null]]
+    let gamegrid = [[null, null, null], [null, null, null], [null, null, null]]
     function twoDtoOneD(row, col) {
       return col + 3*row;
     }
@@ -48,6 +48,7 @@
       console.log("gamegrid is: ", gamegrid)
       if (gamegrid[row][col] === null) {
         markMove("X", buttonNumber)
+        computerMove()
       }
     }
     function getOpenSpaces() {
@@ -56,6 +57,12 @@
         const [row,col] = oneDtoTwoD(buttonNumber)
         return(gamegrid[row][col] === null)
       })
+    }
+    function randElement(arr) {
+      return arr[Math.floor(Math.random() * arr.length)]
+    }
+    function computerMove() {
+      markMove("O", randElement(getOpenSpaces()))
     }
     function handleWin() {
     
@@ -69,9 +76,6 @@
 
     }
 
-    function computerMove() {
-
-    }
   </script>
 
   <h1>
@@ -86,7 +90,7 @@
     </tr>
     <tr>
         <td><button id="button3" onclick="handleClick(3)"></button></td>
-        <td><button id="button4" onclick="handleClick(4)">O</button></td>
+        <td><button id="button4" onclick="handleClick(4)"></button></td>
         <td><button id="button5" onclick="handleClick(5)"></button></td>
     </tr>
     <tr>
