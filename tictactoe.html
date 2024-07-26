@@ -7,7 +7,7 @@
   </title>
 
   <style>
-    button {
+    .gameButton {
     min-width: 200px; 
     min-height: 200px;
     background-color: red;
@@ -16,6 +16,10 @@
     h1 {
     color: blue;
     font-size: 50px;
+    }
+    #WinOrLoss {
+     font-size: 100px
+     
     }
   </style>
 </head>
@@ -48,12 +52,14 @@
       console.log("gamegrid is: ", gamegrid)
       if (gamegrid[row][col] === null) {
         markMove("X", buttonNumber)
-        computerMove()
         if (isWinner("X")) { 
           handleWin()
         }
-        if (isWinner("O")) {
-          handleLoss()
+        else {
+          computerMove()
+          if (isWinner("O")) {
+            handleLoss()
+          }
         }
       }
     }
@@ -114,6 +120,14 @@
     function handleLoss() {
       document.getElementById("WinOrLoss").innerText = "You Lose"
     }
+
+    function resetGame() {
+      gamegrid = [[null, null, null], [null, null, null], [null, null, null]]
+      for(let i = 0; i < 9; i++) {
+        document.getElementById("button" + i).innerText = ""
+      } 
+      document.getElementById("WinOrLoss").innerText = ""
+    }
   </script>
 
   <h1>
@@ -124,20 +138,21 @@
 
   <table>
     <tr>
-        <td><button id="button0" onclick="handleClick(0)"></button></td>
-        <td><button id="button1" onclick="handleClick(1)"></button></td>
-        <td><button id="button2" onclick="handleClick(2)"></button></td>
+        <td><button class="gameButton" id="button0" onclick="handleClick(0)"></button></td>
+        <td><button class="gameButton" id="button1" onclick="handleClick(1)"></button></td>
+        <td><button class="gameButton" id="button2" onclick="handleClick(2)"></button></td>
     </tr>
     <tr>
-        <td><button id="button3" onclick="handleClick(3)"></button></td>
-        <td><button id="button4" onclick="handleClick(4)"></button></td>
-        <td><button id="button5" onclick="handleClick(5)"></button></td>
+        <td><button class="gameButton" id="button3" onclick="handleClick(3)"></button></td>
+        <td><button class="gameButton" id="button4" onclick="handleClick(4)"></button></td>
+        <td><button class="gameButton" id="button5" onclick="handleClick(5)"></button></td>
     </tr>
     <tr>
-        <td><button id="button6" onclick="handleClick(6)"></button></td>
-        <td><button id="button7" onclick="handleClick(7)"></button></td>
-        <td><button id="button8" onclick="handleClick(8)"></button></td>
+        <td><button class="gameButton" id="button6" onclick="handleClick(6)"></button></td>
+        <td><button class="gameButton" id="button7" onclick="handleClick(7)"></button></td>
+        <td><button class="gameButton" id="button8" onclick="handleClick(8)"></button></td>
     </tr>
   </table>
+  <button id="reset" onclick="resetGame()">New Game</button>
 </body>
 </html>
