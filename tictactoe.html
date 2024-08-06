@@ -8,18 +8,29 @@
 
   <style>
     .gameButton {
-    min-width: 200px; 
-    min-height: 200px;
-    background-color: red;
-    font-size: 150px;
+    min-width: 245px; 
+    min-height: 245px;
+    background-color: classic blue;
+    font-size: 190px;
     } 
     h1 {
-    color: blue;
-    font-size: 50px;
+    color: classic blue;
+    font-size: 25px;
+    text-align: center;
     }
     #WinOrLoss {
-     font-size: 100px
-     
+     font-size: 100px;
+     color: classic blue;
+     text-align: center;
+    }
+    .resetButton {
+    display: block;
+    margin: auto;
+    min-width: 150px;
+    }
+    table {
+    margin-left: auto;
+    margin-right: auto;
     }
   </style>
 </head>
@@ -56,7 +67,7 @@
           handleWin()
         }
         else {
-          computerMove()
+          computerMoveTwo()
           if (isWinner("O")) {
             handleLoss()
           }
@@ -110,9 +121,73 @@
     if (gamegrid[2][0] === letter &&
        gamegrid[1][1] === letter &&
        gamegrid[0][2] === letter) {
-       return true}
-
+       return true} 
     }
+    
+    function computerMoveTwo() {
+      for(let col = 0; col < 3; col ++) {
+        if(gamegrid[0][col] == gamegrid[1][col] && gamegrid[0][col] && !gamegrid[2][col]) {
+          markMoveByRowAndCol("O", 2, col)
+          return
+        }
+        if(gamegrid[1][col] == gamegrid[2][col] && gamegrid[1][col] && !gamegrid[0][col]) {
+          markMoveByRowAndCol("O", 0, col)
+          return
+        }
+        if(gamegrid[0][col] == gamegrid[2][col] && gamegrid[2][col] && !gamegrid[1][col]) {
+          markMoveByRowAndCol("O", 1, col)
+          return
+        }
+      }
+      for(let row = 0; row < 3; row ++) {
+        if(gamegrid[row][0] == gamegrid[row][1] && gamegrid[row][0] && !gamegrid[row][2]) {
+          markMoveByRowAndCol("O", row, 2)
+          return
+        }
+        if(gamegrid[row][1] == gamegrid[row][2] && gamegrid[row][1] && !gamegrid[row][0]) {
+          markMoveByRowAndCol("O", row, 0)
+          return
+        }
+        if(gamegrid[row][0] == gamegrid[row][2] && gamegrid[row][2] && !gamegrid[row][1]) {
+          markMoveByRowAndCol("O", row, 1)
+          return
+        }
+      }
+      // left diagonal
+      //  x |   | 
+      //    | x |
+      //    |   | x
+      if(gamegrid[0][0] == gamegrid[1][1] && gamegrid[0][0] && !gamegrid[2][2]) {
+        markMoveByRowAndCol("O", 2, 2)
+        return
+      }
+      if(gamegrid[0][0] == gamegrid[2][2] && gamegrid[0][0] && !gamegrid[1][1]) {
+        markMoveByRowAndCol("O", 1, 1)
+        return
+      }
+      if(gamegrid[1][1] == gamegrid[2][2] && gamegrid[1][1] && !gamegrid[0][0]) {
+        markMoveByRowAndCol("O", 0, 0)
+        return
+      }
+      // right diagonal
+      if(gamegrid[0][2] == gamegrid[1][1] && gamegrid[0][2] && !gamegrid[2][0]) {
+        markMoveByRowAndCol("O", 2, 0)
+        return
+      }
+      if(gamegrid[0][2] == gamegrid[2][0] && gamegrid[0][2] && !gamegrid[1][1]) {
+        markMoveByRowAndCol("O", 1, 1)
+        return
+      }
+      if(gamegrid[1][1] == gamegrid[2][0] && gamegrid[1][1] && !gamegrid[0][2]) {
+        markMoveByRowAndCol("O", 0, 2)
+        return
+      }
+
+      
+      // if we couldn't find a smart move, pick a random valid move
+      computerMove()
+    }
+
     function handleWin() {
       document.getElementById("WinOrLoss").innerText = "You Won"
     }
@@ -133,7 +208,7 @@
   <h1>
     TicTacToe
   </h1>
-  
+  <button class="resetButton" id="reset" onclick="resetGame()">New Game</button>
   <div id="WinOrLoss"></div>
 
   <table>
@@ -153,6 +228,5 @@
         <td><button class="gameButton" id="button8" onclick="handleClick(8)"></button></td>
     </tr>
   </table>
-  <button id="reset" onclick="resetGame()">New Game</button>
 </body>
 </html>
